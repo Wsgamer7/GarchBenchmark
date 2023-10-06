@@ -3,26 +3,45 @@ print("####Garch################################")
 print("#########################################")
 library(tidyverse)
 library(xts, quietly = TRUE)
+library(rugarch)
 benchInIGarch = function(xtsData, dataName) {
+  print("----------------------------------------------------------------------------------")
   print(paste("DDData used:",dataName))
-  mod1 <- garchFit(~ 1 + garch(1,1), xtsData, trace=FALSE)
-  print(paste("#Garch(1,1) #norm #", dataName, seq=""))
-  summary(mod1)
-
+  spec1 = ugarchspec(variance.model=list(model="iGARCH", garchOrder=c(1,1)), 
+                     mean.model=list(armaOrder=c(0,0), include.mean=TRUE),  
+                     distribution.model="norm")
+  mod1 = rugarchfit(spec = spec1, data = xtsData)
+  print(paste("#IGarch(1,1) #norm #", dataName, seq=""))
+  show(mod1)
+  
+  
   print("----------------------------------------------------------------------------------")
-  mod2 <- garchFit(~ 1 + garch(1,1), xtsData,cond.dist="snorm", trace=FALSE)
-  print(paste("#Garch(1,1) #snorm #", dataName, seq=""))
-  summary(mod2)
-
+  print(paste("DDData used:",dataName))
+  spec2 = ugarchspec(variance.model=list(model="iGARCH", garchOrder=c(1,1)), 
+                     mean.model=list(armaOrder=c(0,0), include.mean=TRUE),  
+                     distribution.model="snorm")
+  mod2 = rugarchfit(spec = spec2, data = xtsData)
+  print(paste("#IGarch(1,1) #snorm #", dataName, seq=""))
+  show(mod2)
+  
   print("----------------------------------------------------------------------------------")
-  mod3 <- garchFit(~ 1 + garch(1,1), xtsData,cond.dist="std", trace=FALSE)
-  print(paste("#Garch(1,1) #std #", dataName, seq=""))
-  summary(mod3)
-
+  print(paste("DDData used:",dataName))
+  spec3 = ugarchspec(variance.model=list(model="iGARCH", garchOrder=c(1,1)), 
+                     mean.model=list(armaOrder=c(0,0), include.mean=TRUE),  
+                     distribution.model="std")
+  mod3 = rugarchfit(spec = spec3, data = xtsData)
+  print(paste("#IGarch(1,1) #std #", dataName, seq=""))
+  show(mod3)
+  
+  
   print("----------------------------------------------------------------------------------")
-  mod4 <- garchFit(~ 1 + garch(1,1), xtsData,cond.dist="sstd", trace=FALSE)
-  print(paste("#Garch(1,1) #sstd #", dataName, seq=""))
-  summary(mod4)
+  print(paste("DDData used:",dataName))
+  spec4 = ugarchspec(variance.model=list(model="iGARCH", garchOrder=c(1,1)), 
+                     mean.model=list(armaOrder=c(0,0), include.mean=TRUE),  
+                     distribution.model="sstd")
+  mod4 = rugarchfit(spec = spec1, data = xtsData)
+  print(paste("#IGarch(1,1) #sstd #", dataName, seq=""))
+  show(mod4)
   print("-----------------------------------------")
   print("#########################################")
   print("####ENDENDENDEDN#########################")
