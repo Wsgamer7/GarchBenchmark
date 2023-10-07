@@ -7,40 +7,40 @@ library(rugarch)
 benchInGarch = function(xtsData, dataName) {
   print("----------------------------------------------------------------------------------")
   print(paste("DDData used:",dataName))
-  spec1 = ugarchspec(variance.model=list(model="fGARCH", garchOrder=c(1,1), submodel="GARCH"), 
+  spec1 = ugarchspec(variance.model=list(model="fGARCH", garchOrder=c(1,1), submodel="NGARCH"), 
                      mean.model=list(armaOrder=c(0,0), include.mean=TRUE),  
                      distribution.model="norm")
   mod1 = ugarchfit(spec = spec1, data = xtsData)
-  print(paste("#Garch(1,1) #norm #", dataName, seq=""))
+  print(paste("#NGarch(1,1) #norm #", dataName, seq=""))
   show(mod1)
   
   
   print("----------------------------------------------------------------------------------")
   print(paste("DDData used:",dataName))
-  spec2 = ugarchspec(variance.model=list(model="fGARCH", garchOrder=c(1,1), submodel="GARCH"), 
+  spec2 = ugarchspec(variance.model=list(model="fGARCH", garchOrder=c(1,1), submodel="NGARCH"), 
                      mean.model=list(armaOrder=c(0,0), include.mean=TRUE),  
                      distribution.model="snorm")
   mod2 = ugarchfit(spec = spec2, data = xtsData)
-  print(paste("#Garch(1,1) #snorm #", dataName, seq=""))
+  print(paste("#NGarch(1,1) #snorm #", dataName, seq=""))
   show(mod2)
   
   print("----------------------------------------------------------------------------------")
   print(paste("DDData used:",dataName))
-  spec3 = ugarchspec(variance.model=list(model="fGARCH", garchOrder=c(1,1), submodel="GARCH"), 
+  spec3 = ugarchspec(variance.model=list(model="fGARCH", garchOrder=c(1,1), submodel="NGARCH"), 
                      mean.model=list(armaOrder=c(0,0), include.mean=TRUE),  
                      distribution.model="std")
   mod3 = ugarchfit(spec = spec3, data = xtsData)
-  print(paste("#Garch(1,1) #std #", dataName, seq=""))
+  print(paste("#NGarch(1,1) #std #", dataName, seq=""))
   show(mod3)
   
   
   print("----------------------------------------------------------------------------------")
   print(paste("DDData used:",dataName))
-  spec4 = ugarchspec(variance.model=list(model="fGARCH", garchOrder=c(1,1), submodel="GARCH"), 
+  spec4 = ugarchspec(variance.model=list(model="fGARCH", garchOrder=c(1,1), submodel="NGARCH"), 
                      mean.model=list(armaOrder=c(0,0), include.mean=TRUE),  
                      distribution.model="sstd")
   mod4 = ugarchfit(spec = spec1, data = xtsData)
-  print(paste("#Garch(1,1) #sstd #", dataName, seq=""))
+  print(paste("#NGarch(1,1) #sstd #", dataName, seq=""))
   show(mod4)
   print("-----------------------------------------")
   print("#########################################")

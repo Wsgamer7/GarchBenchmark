@@ -4,13 +4,13 @@ print("#########################################")
 library(tidyverse)
 library(xts, quietly = TRUE)
 library(rugarch)
-benchInIGarch = function(xtsData, dataName) {
+benchInGarch = function(xtsData, dataName) {
   print("----------------------------------------------------------------------------------")
   print(paste("DDData used:",dataName))
   spec1 = ugarchspec(variance.model=list(model="iGARCH", garchOrder=c(1,1)), 
                      mean.model=list(armaOrder=c(0,0), include.mean=TRUE),  
                      distribution.model="norm")
-  mod1 = rugarchfit(spec = spec1, data = xtsData)
+  mod1 = ugarchfit(spec = spec1, data = xtsData)
   print(paste("#IGarch(1,1) #norm #", dataName, seq=""))
   show(mod1)
   
@@ -20,7 +20,7 @@ benchInIGarch = function(xtsData, dataName) {
   spec2 = ugarchspec(variance.model=list(model="iGARCH", garchOrder=c(1,1)), 
                      mean.model=list(armaOrder=c(0,0), include.mean=TRUE),  
                      distribution.model="snorm")
-  mod2 = rugarchfit(spec = spec2, data = xtsData)
+  mod2 = ugarchfit(spec = spec2, data = xtsData)
   print(paste("#IGarch(1,1) #snorm #", dataName, seq=""))
   show(mod2)
   
@@ -29,7 +29,7 @@ benchInIGarch = function(xtsData, dataName) {
   spec3 = ugarchspec(variance.model=list(model="iGARCH", garchOrder=c(1,1)), 
                      mean.model=list(armaOrder=c(0,0), include.mean=TRUE),  
                      distribution.model="std")
-  mod3 = rugarchfit(spec = spec3, data = xtsData)
+  mod3 = ugarchfit(spec = spec3, data = xtsData)
   print(paste("#IGarch(1,1) #std #", dataName, seq=""))
   show(mod3)
   
@@ -39,7 +39,7 @@ benchInIGarch = function(xtsData, dataName) {
   spec4 = ugarchspec(variance.model=list(model="iGARCH", garchOrder=c(1,1)), 
                      mean.model=list(armaOrder=c(0,0), include.mean=TRUE),  
                      distribution.model="sstd")
-  mod4 = rugarchfit(spec = spec1, data = xtsData)
+  mod4 = ugarchfit(spec = spec1, data = xtsData)
   print(paste("#IGarch(1,1) #sstd #", dataName, seq=""))
   show(mod4)
   print("-----------------------------------------")
